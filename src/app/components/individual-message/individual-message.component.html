@@ -1,0 +1,46 @@
+
+<div class="container my-5">
+    <div class="col border rounded border-secondary">
+        <div class="container-fluid d-flex justify-content-between align-self-center p-3">
+            <a routerLink="/messages" class="d-flex align-self-center">
+                <button class="form-control btn-primary btn w-auto rounded-circle" style="width:40px !important; height:40px !important;">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </a>
+            <div class="justify-content-center align-self-center" style="flex:1;">
+                <h5 class="justify-content-center d-flex">{{CurrentThreadName}}<i routerLink="/edit-thread/{{CurrentThreadID}}" class="fa-solid fa-pencil d-flex justify-content-center align-self-center" style="font-size:12px;margin-left:0.5rem;cursor:pointer;"></i></h5>
+                <img src="{{CurrentThreadImage}}" style='margin:0 auto'class="justify-content-center d-flex" width='45px'/>
+            </div>
+            
+            <div>
+                <a routerLink="/user/{{CurrentOtherUserID}}">
+                    <img src="{{CurrentOtherUserImage}}" style='margin:0 auto'class="justify-content-center d-flex rounded-circle" width='75px' height='75px' style='object-fit:cover;object-position:center center;'/>
+                </a>
+            </div>
+        </div>
+        <hr class='mx-4 mb-0 mt-0'/>
+        <div class="container-fluid d-flex flex-column">
+            <div *ngFor="let thread of Messages" class="pb-1 pt-1 d-flex container-fluid flex-column">
+                <div class="col d-flex" routerLink="/thread/{{thread.id}}" style="cursor:pointer" [ngClass]="{'justify-content-end': userID == thread.author}">
+                    <img *ngIf="userID != thread.author" src="{{thread.user_img}}" width='25px' height='25px' class='align-self-end my-3 rounded-circle' style='margin-right:0.5rem;'/>
+                    <div class="w-75 bg-primary d-flex my-2" style="border-radius:25px" [ngClass]="{'bg-light': userID != thread.author, 'border': userID != thread.author}">
+                        <h5 class="p-3" [ngClass]="{'text-dark': userID != thread.author, 'text-white': userID == thread.author}">{{thread.body}}</h5>
+                    </div>
+                    
+                </div>
+                <i class='d-flex' [ngClass]="{'align-self-end': userID == thread.author}">{{thread.sent_at}}</i>
+            </div>
+            <div class="pb-3">
+                <form>
+                    <div class="container-fluid d-flex w-100">
+                        <input type="text" class="form-control" style='border-radius: 25px' placeholder="Type your message here...."/>
+                        <button type="submit" class="form-control btn-primary btn w-auto rounded-circle" style="width:40px !important; height:40px !important;margin-left:0.5rem;">
+                            <i class="fa-solid fa-paper-plane d-flex justify-content-center align-self-center"></i>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

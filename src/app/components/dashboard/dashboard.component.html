@@ -1,0 +1,20 @@
+
+<div class="container my-5">
+    <div class="col border rounded border-secondary">
+        <div class="container-fluid d-flex justify-content-between">
+            <h5 class="p-3 pb-0 align-self-end mb-0" style="height:fit-content;">Your Messages</h5>
+        </div>
+        <hr class='mx-4 mb-0'/>
+        <div class="container-fluid d-flex flex-column">
+                <div *ngFor="let thread of Threads" class="pb-1 pt-1 d-flex container-fluid">
+                    <div class="col d-flex justify-content-between border-bottom " routerLink="/thread/{{thread.id}}" style="cursor:pointer">
+                        <div class="align-self-center">
+                            <h4>{{thread.thread_name}}</h4>
+                            <p>{{thread.user_name}}</p>
+                        </div>
+                        <img src="{{thread.img_src}}"height="75px" style='padding: 10px 0px'/>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

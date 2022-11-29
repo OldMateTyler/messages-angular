@@ -1,0 +1,49 @@
+<div class="container my-5 border rounded border-secondary">
+    <div class="col ">
+        <div class="container-fluid d-flex justify-content-between pt-4">
+            <h5 class="'p-4 pb-0 align-self-end mb-0">
+                Sign Up!
+            </h5>
+        </div>
+    </div>
+    <hr class="'mx-4">
+    <div class="container-fluid d-flex flex-column">
+        <div class="pb-1 pt-1 d-flex container-fluid">
+            <div class="col">
+                <form [formGroup]="signUpForm" (ngSubmit)="submitForm()" validate>
+                    <div class="form-group mx-0 px-0 py-1">
+                        <label for="name">Name:</label>
+                        <input type="text"  [ngClass]="{'is-invalid': ((name.invalid && submitted) || ( name.invalid && (name.dirty || name.touched))) == true, 'is-valid': name.valid == true}" required class="form-control" id="name" formControlName="name" placeholder="Enter Name">
+                        <p class="text-danger mb-0 mt-2"
+                            *ngIf="(name.invalid && submitted) || ( name.invalid && (name.dirty || name.touched))">
+                            Name is required
+                        </p>
+                    </div>
+                    <div class="form-group mx-0 px-0 py-1">
+                        <label for="email">Email:</label>
+                        <input type="email" [ngClass]="{'is-invalid': ((email.invalid && submitted) || ( email.invalid && (email.dirty || email.touched))) == true, 'is-valid': email.valid == true}" required class="form-control" id="email" formControlName="email" placeholder="Enter Email">
+                        <p class="text-danger mb-0 mt-2"
+                            *ngIf="(email.invalid && submitted) || ( email.invalid && (email.dirty || email.touched))">
+                            Email is required
+                        </p> 
+                    </div>
+                    <div class="form-group mx-0 px-0 py-1">
+                        <label for="password">Password:</label>
+                        <input type="password" [ngClass]="{'is-invalid': ((password.invalid && submitted) || ( password.invalid && (password.dirty || password.touched))) == true, 'is-valid': password.valid == true}"  required class="form-control" id="password" formControlName="password" placeholder="Enter Password">
+                        <p class="text-danger mb-0 mt-2"
+                            *ngIf="(password.invalid && submitted) || ( password.invalid && (password.dirty || password.touched))">
+                            Password is required
+                        </p>
+                    </div>
+                    <div class="form-group mx-0 px-0 py-3 pb-2 d-flex justify-content-center">
+                        <p>Already have an account? Click <a href='' routerLink="/signin">here</a></p>
+                    </div>
+                    <div class="form-group mx-0 px-0 py-4 pt-0 d-flex justify-content-center">
+                        <input type="reset" class="form-control btn btn-light border border-secondary d-flex w-auto mx-2"/>
+                        <input type="submit" class="form-control d-flex w-auto mx-2 btn-primary btn"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

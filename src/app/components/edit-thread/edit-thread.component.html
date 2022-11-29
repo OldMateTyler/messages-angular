@@ -1,0 +1,40 @@
+
+<div class="container my-5 border rounded border-secondary">
+    <div class="col ">
+        <div class="container-fluid d-flex justify-content-between pt-4">
+            <h5 class="'p-4 pb-0 align-self-end mb-0">
+                Edit Thread
+            </h5>
+        </div>
+    </div>
+    <hr class="'mx-4">
+    <div class="container-fluid d-flex flex-column">
+        <div class="pb-1 pt-1 d-flex container-fluid">
+            <div class="col">
+                <form [formGroup]="editThreadForm" (ngSubmit)="submitForm()" validate>
+                    <div class="form-group mx-0 px-0 py-1">
+                        <label for="name">Thread Name:</label>
+                        <input type="text" [ngClass]="{'is-invalid': ((name.invalid && submitted) || ( name.invalid && (name.dirty || name.touched))) == true, 'is-valid': name.valid == true}" required class="form-control" id="name" formControlName="thread_name" placeholder="Enter Name">
+                        <p class="text-danger mb-0 mt-2"
+                            *ngIf="(name.invalid && submitted) || ( name.invalid && (name.dirty || name.touched))">
+                            Thread Name is required
+                        </p> 
+                    </div>
+                    <div class="form-group mx-0 px-0 py-1">
+                        <label for="img_src">Image URL (HTTP links):</label>
+                        <input type="text" [ngClass]="{'is-invalid': ((img_src.invalid && submitted) || ( img_src.invalid && (img_src.dirty || img_src.touched))) == true, 'is-valid': img_src.valid == true}"  required class="form-control" id="img_src" formControlName="img_src" placeholder="Enter image URL">
+                        <p class="text-danger mb-0 mt-2"
+                            *ngIf="(img_src.invalid && submitted) || ( img_src.invalid && (img_src.dirty || img_src.touched))">
+                            Image URL is required
+                        </p>
+                    </div>
+                    <input type="hidden" formControlName="thread_id" value="{{thread_id}}"/>
+                    <div class="form-group mx-0 px-0 py-4 d-flex justify-content-center">
+                        <input type="reset" class="form-control btn btn-light border border-secondary d-flex w-auto mx-2"/>
+                        <input type="submit" class="form-control d-flex w-auto mx-2 btn-primary btn"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

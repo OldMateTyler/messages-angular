@@ -14,6 +14,10 @@ export class IndividualProfileComponent {
   Profile :any;
   Relationship: any;
   Thread: any;
+  currentUserID: any;
+  checkerID: any;
+  threadID : any;
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +28,7 @@ export class IndividualProfileComponent {
     ngOnInit():void{
       this.loadUser();
       this.checkRelationship();
+      this.getCurrentUserDetails();
     }
     checkRelationship(){
       var userID = null;
@@ -42,13 +47,19 @@ export class IndividualProfileComponent {
       })
 
     }
+    getCurrentUserDetails(){
+      return this.userService.GetCurrentUser().subscribe((response:any)=>{
+        this.currentUserID = response[0].id;
+      })
+    }
     loadUser(){
       var userID = null;
 
       this.routeSub = this.route.params.subscribe(params=>{
-        userID = params['id']
+        userID = params['id'];
+        this.checkerID = params['id'];
       });
-
+      
       return this.userService.GetUserProfile(userID).subscribe((data:any)=>{
         this.Profile = (Object.values(data)).flat(2);
       })

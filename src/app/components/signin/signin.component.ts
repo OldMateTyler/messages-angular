@@ -13,6 +13,7 @@ export class SigninComponent {
   submitted = false;
 
   ngOnInit():void{
+    localStorage.removeItem('token');
     this.signUserIn();
   }
   constructor(
@@ -20,7 +21,8 @@ export class SigninComponent {
     private ngZone: NgZone,
     private router: Router,
     public userService: UserService
-  ){}
+  ){    
+}
 
   signUserIn(){
     this.signInForm = this.fb.group({

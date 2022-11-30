@@ -14,6 +14,7 @@ export class SignupComponent {
   submitted = false;
 
   ngOnInit():void{
+    localStorage.removeItem('token');
     this.signUserIn();
   }
   constructor(
@@ -21,8 +22,8 @@ export class SignupComponent {
     private ngZone: NgZone,
     private router: Router,
     public userService: UserService,
-    private cookieService: CookieService
-  ){}
+  ){
+  }
 
   signUserIn(){
     this.signUpForm = this.fb.group({
@@ -39,8 +40,7 @@ export class SignupComponent {
     this.submitted = true;
     if(this.signUpForm.valid){
       this.userService.SignUpUser(this.signUpForm.value).subscribe((res) =>{
-        //localStorage.setItem('token', res.token);
-        console.log(res);
+        localStorage.setItem('token', res.token);
         this.ngZone.run(()=> this.router.navigateByUrl('/messages'));
       })
     }

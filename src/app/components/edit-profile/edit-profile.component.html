@@ -1,0 +1,37 @@
+
+<div class="container my-5 border rounded border-secondary">
+    <div class="col ">
+        <div class="container-fluid d-flex justify-content-between pt-4">
+            <h5 class="'p-4 pb-0 align-self-end mb-0">
+                Edit Your Profile
+            </h5>
+        </div>
+    </div>
+    <hr class="'mx-4">
+    <div class="container-fluid d-flex flex-column">
+        <div class="pb-1 pt-1 d-flex container-fluid">
+            <div class="col">
+                <form [formGroup]="editProfileForm" (ngSubmit)="submitForm()" validate>
+                    <div class="form-group mx-0 px-0 py-1">
+                        <label for="name">Name:</label>
+                        <input type="text" required class="form-control" id="name" formControlName="name"placeholder="Enter Name" value="{{userName}}">
+                    </div>
+                    <div class="form-group mx-0 px-0 py-1">
+                        <label for="email">Email:</label>
+                        <input type="email" required class="form-control" id="email" formControlName="email" placeholder="Enter Email" value="{{email}}">
+                    </div>
+                    <div class="form-group mx-0 px-0 py-1">
+                        <label for="img_src">Image URL (HTTP links):</label>
+                        <input type="text" required class="form-control" id="user_img" formControlName="user_img" placeholder="Enter image URL" value="{{userImg}}">
+
+                    </div>
+                    <!--<input type="hidden" formControlName="thread_id" value="{{thread_id}}"/>-->
+                    <div class="form-group mx-0 px-0 py-4 d-flex justify-content-center">
+                        <input type="reset" class="form-control btn btn-light border border-secondary d-flex w-auto mx-2"/>
+                        <input type="submit" class="form-control d-flex w-auto mx-2 btn-primary btn"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

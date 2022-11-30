@@ -13,6 +13,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { IndividualMessageComponent } from './components/individual-message/individual-message.component';
 import { IndividualProfileComponent } from './components/individual-profile/individual-profile.component';
 import { EditThreadComponent } from './components/edit-thread/edit-thread.component';
+import { CreateThreadComponent } from './components/create-thread/create-thread.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { EditThreadComponent } from './components/edit-thread/edit-thread.compon
     SignupComponent,
     IndividualMessageComponent,
     IndividualProfileComponent,
-    EditThreadComponent
+    EditThreadComponent,
+    CreateThreadComponent,
+    EditProfileComponent,
   ],
   imports: [
     RouterModule,

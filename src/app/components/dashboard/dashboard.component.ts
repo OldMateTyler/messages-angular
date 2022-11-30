@@ -23,6 +23,10 @@ export class DashboardComponent {
       this.userID = response[0].id;
     })
   }
+  DeleteUsersThread(thread_id){
+    this.userService.DeleteThread(thread_id).subscribe((response:any)=>{});
+    this.loadThreads();
+  }
   loadThreads(){
     return this.userService.GetThreads().subscribe((response:{})=>{
         this.Threads = (Object.values(response)).flat(2);

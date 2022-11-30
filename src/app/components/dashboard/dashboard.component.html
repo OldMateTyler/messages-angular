@@ -2,17 +2,26 @@
 <div class="container my-5">
     <div class="col border rounded border-secondary">
         <div class="container-fluid d-flex justify-content-between">
-            <h5 class="p-3 pb-0 align-self-end mb-0" style="height:fit-content;">Your Messages</h5>
+            <h5 class="p-3 pb-0 align-self-end mb-0" style="height:fit-content;">Your Threads</h5>
+            <i routerLink="/create-thread" class="fa-solid fa-circle-plus text-success align-self-end d-flex" style="font-size:30px;padding-right:0.5rem;cursor:pointer"></i>
         </div>
         <hr class='mx-4 mb-0'/>
         <div class="container-fluid d-flex flex-column">
+            <div *ngIf="Threads.length == 0" class="pb-1 pt-1 d-flex container-fluid flex-column">
+                <div class="col d-flex justify-content-center py-4">
+                    <h5>You have no current threads!</h5>
+                </div>
+            </div>
                 <div *ngFor="let thread of Threads" class="pb-1 pt-1 d-flex container-fluid">
-                    <div class="col d-flex justify-content-between border-bottom " routerLink="/thread/{{thread.id}}" style="cursor:pointer">
-                        <div class="align-self-center">
+                    <div class="col d-flex justify-content-between border-bottom py-2">
+                        <div class="align-self-center" routerLink="/thread/{{thread.id}}" style="cursor:pointer">
                             <h4>{{thread.thread_name}}</h4>
                             <p>{{thread.user_name}}</p>
                         </div>
-                        <img src="{{thread.img_src}}"height="75px" style='padding: 10px 0px'/>
+                        <div>
+                            <img src="{{thread.img_src}}"height="75px" width="75px" style='object-fit: cover;object-position: center center;' class='rounded-circle'/>
+                            <i class="fa-solid fa-circle-minus text-danger" (click)="DeleteUsersThread(thread.id)" style="padding-left:0.5rem;cursor:pointer"></i>
+                        </div>
                     </div>
                 </div>
         </div>

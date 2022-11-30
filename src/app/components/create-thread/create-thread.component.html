@@ -3,7 +3,7 @@
     <div class="col ">
         <div class="container-fluid d-flex justify-content-between pt-4">
             <h5 class="'p-4 pb-0 align-self-end mb-0">
-                Edit Thread
+                Create Thread
             </h5>
         </div>
     </div>
@@ -11,14 +11,25 @@
     <div class="container-fluid d-flex flex-column">
         <div class="pb-1 pt-1 d-flex container-fluid">
             <div class="col">
-                <form [formGroup]="editThreadForm" (ngSubmit)="submitForm()" validate>
+                <form [formGroup]="createThreadForm" (ngSubmit)="submitForm()" validate>
                     <div class="form-group mx-0 px-0 py-1">
                         <label for="name">Thread Name:</label>
-                        <input type="text"[ngClass]="{'is-invalid': ((name.invalid && submitted) || ( name.invalid && (name.dirty || name.touched))) == true, 'is-valid': name.valid == true}" required class="form-control" id="name" formControlName="thread_name" placeholder="Enter Name">
+                        <input type="text"[ngClass]="{'is-invalid': ((thread_name.invalid && submitted) || ( thread_name.invalid && (thread_name.dirty || thread_name.touched))) == true, 'is-valid': thread_name.valid == true}" required class="form-control" id="name" formControlName="thread_name" placeholder="Enter Name">
                         <p class="text-danger mb-0 mt-2"
-                            *ngIf="(name.invalid && submitted) || ( name.invalid && (name.dirty || name.touched))">
+                            *ngIf="(thread_name.invalid && submitted) || ( thread_name.invalid && (thread_name.dirty || thread_name.touched))">
                             Thread Name is required
                         </p> 
+                    </div>
+                    <div class="form-group mx-0 px-0 py-1">
+                        <label for="name">User:</label>
+                        <select class="form-select" required class="form-control" id="userTwo" formControlName="userTwo" [ngClass]="{'is-invalid': ((userTwo.invalid && submitted) || ( userTwo.invalid && (userTwo.dirty || userTwo.touched))) == true, 'is-valid': userTwo.valid == true}">
+                            <option disabled selected>Select User Name</option>
+                            <option *ngFor="let user of otherUsers" value="{{user.id}}">{{user.name}}</option>
+                        </select>
+                        <p class="text-danger mb-0 mt-2"
+                        *ngIf="(userTwo.invalid && submitted) || ( userTwo.invalid && (userTwo.dirty || userTwo.touched))">
+                        User Name is required
+                    </p> 
                     </div>
                     <div class="form-group mx-0 px-0 py-1">
                         <label for="img_src">Image URL (HTTP links):</label>
@@ -28,7 +39,6 @@
                             Image URL is required
                         </p>
                     </div>
-                    <input type="hidden" formControlName="thread_id" value="{{thread_id}}"/>
                     <div class="form-group mx-0 px-0 py-4 d-flex justify-content-center">
                         <input type="reset" class="form-control btn btn-light border border-secondary d-flex w-auto mx-2"/>
                         <input type="submit" class="form-control d-flex w-auto mx-2 btn-primary btn"/>

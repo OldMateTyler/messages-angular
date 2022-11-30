@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid justify-content-between d-flex p-5 pt-2 pb-2">
         <div>
-            <a class="navbar-brand" href="#">Tyler's Messaging System</a>
+            <span class="navbar-brand"style="cursor:pointer;" routerLink="/messages">Tyler's Messaging System</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -10,16 +10,25 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <span class="nav-link" aria-current="page" routerLink="/messages" *ngIf="SignedIn != null" style="cursor:pointer;">Messages</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <span class="nav-link" aria-current="page" routerLink="/create-thread" *ngIf="SignedIn != null" style="cursor:pointer;">Create Thread</span>
+          </li>
+          <li>
+            <span class="nav-link" aria-current="page" routerLink="/edit-profile/{{userID}}" *ngIf="SignedIn != null" style="cursor:pointer;">Edit Profile</span>
+          </li>
+          <li>
+            <span class="nav-link" aria-current="page" routerLink="/user/{{userID}}" *ngIf="SignedIn != null" style="cursor:pointer;">View Profile</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <span class="nav-link" aria-current="page" routerLink="/signup"*ngIf="SignedIn == null" style="cursor:pointer;">Sign Up</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+            <span class="nav-link" aria-current="page" routerLink="/signin"*ngIf="SignedIn == null" style="cursor:pointer;">Sign In</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link" (click)="SignUserOut()" *ngIf="SignedIn != null" style="cursor:pointer;">Sign Out</span>
           </li>
         </ul>
       </div>

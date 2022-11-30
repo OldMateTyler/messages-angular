@@ -3,19 +3,22 @@
     <div class="col border rounded border-secondary">
         <div class="container-fluid d-flex flex-column">
                 <div *ngFor="let thread of Profile" class="pb-1 pt-1 d-flex container-fluid">
-                    <div class="col d-flex justify-content-center border-bottom flex-column" routerLink="/thread/{{Thread}}" style="cursor:pointer">
+                    <div class="col d-flex justify-content-center border-bottom flex-column" style="cursor:pointer">
                         <div class="align-self-center">
                             <img src="{{thread.user_img}}"height="400px" width="400px" class="rounded-circle" style='padding: 10px 0px;object-fit: cover;object-position: center center;'/>
                             <h4 class="text-center">{{thread.name}}</h4>
                             <p class="text-center">{{thread.email}}</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button *ngIf="Relationship == true"class="form-control btn btn-primary" style="width:fit-content">
+                            <button *ngIf="checkerID == currentUserID" routerLink="/user/{{currentUserID}}"class="form-control btn btn-primary" style="width:fit-content">
+                                Edit Profile
+                            </button>
+                            <button *ngIf="Relationship == true && checkerID != currentUserID" class="form-control btn btn-primary" routerLink="/thread/{{Thread}}" style="width:fit-content">
                                 View your Thread
                             </button>
-                            <button *ngIf="Relationship == false" class="form-control btn btn-primary" style="width:fit-content">
+                            <button *ngIf="Relationship == false && checkerID != currentUserID" class="form-control btn btn-primary" routerLink="/create-thread" style="width:fit-content">
                                 Start a Thread
-                            </button> 
+                            </button>
                         </div>
                     </div>
                 </div>

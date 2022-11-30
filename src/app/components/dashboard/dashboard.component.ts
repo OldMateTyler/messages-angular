@@ -30,6 +30,7 @@ export class DashboardComponent {
   loadThreads(){
     return this.userService.GetThreads().subscribe((response:{})=>{
         this.Threads = (Object.values(response)).flat(2);
+        console.log(this.Threads);
     })
   }
 }

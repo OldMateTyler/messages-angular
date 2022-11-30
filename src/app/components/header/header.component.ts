@@ -14,9 +14,13 @@ export class HeaderComponent {
     private router: Router,
     public userService: UserService
     ){
-      this.getCurrentUserDetails();
+      if(localStorage.getItem('token')){
+        this.getCurrentUserDetails();
+      }
+      
     }
     get SignedIn(){return localStorage.getItem('token');}
+
     getCurrentUserDetails(){
       return this.userService.GetCurrentUser().subscribe((response:any)=>{
         this.userID = response[0].id;

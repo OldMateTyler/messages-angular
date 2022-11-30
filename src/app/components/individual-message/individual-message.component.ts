@@ -29,6 +29,7 @@ export class IndividualMessageComponent {
     ){}
 
     ngOnInit():void{
+      this.ReadMessage();
       this.loadMessages();
       this.getCurrentUserDetails();
       this.getCurrentThread();
@@ -38,6 +39,18 @@ export class IndividualMessageComponent {
       return this.userService.GetCurrentUser().subscribe((response:any)=>{
         this.userID = response[0].id;
       })
+    }
+    ReadMessage(){
+      var messageID = null;
+
+      this.routeSub = this.route.params.subscribe(params=>{
+        this.CurrentThreadID = params['id'];
+        messageID = params['id'];
+      });
+
+      return this.userService.UpdateMessageRead(messageID).subscribe((res:any)=>{
+        console.log('meow');
+      });
     }
     getCurrentThread(){
       var messageID = null;

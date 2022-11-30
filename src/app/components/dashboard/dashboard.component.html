@@ -18,6 +18,12 @@
                             <h4>{{thread.thread_name}}</h4>
                             <p>{{thread.user_name}}</p>
                         </div>
+                        <div class="d-flex align-self-center" routerLink="/thread/{{thread.id}}" style="cursor:pointer">
+                            <p style="  overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            max-width: 50ch;" class="mb-0"><b>{{thread.body}}</b></p><i *ngIf="thread.body != null" class="fa-solid fa-bell d-flex align-self-center text-danger" style="margin-left:0.5rem;"></i>
+                        </div>
                         <div>
                             <img src="{{thread.img_src}}"height="75px" width="75px" style='object-fit: cover;object-position: center center;' class='rounded-circle'/>
                             <i class="fa-solid fa-circle-minus text-danger" (click)="DeleteUsersThread(thread.id)" style="padding-left:0.5rem;cursor:pointer"></i>

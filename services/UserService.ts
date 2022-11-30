@@ -25,6 +25,9 @@ export class UserService{
         'Authorization': "Bearer " + localStorage.getItem('token')
       }),
     };
+    UpdateMessageRead(data:any): Observable<any>{
+      return this.http.post(this.baseurl + 'update-message-read/' + data, JSON.stringify(data), this.httpOptions).pipe(retry(1), catchError(this.errorHandl));
+    }
     UpdateProfile(data:any): Observable<any>{
       this.resetHttpOptions();
       return this.http.post(this.baseurl + 'update-profile', JSON.stringify(data), this.httpOptions).pipe(retry(1), catchError(this.errorHandl));
